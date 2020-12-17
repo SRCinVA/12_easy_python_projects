@@ -15,4 +15,22 @@ def guess(x):
 
     print(f"Badda-bing! With {random_number}, you nailed it.")
 
-guess(10)
+
+def computer_guess(x):
+    low = 1   # to initialize low
+    high = x  # to initialize high
+    feedback = ''
+    while feedback != 'c':
+        if low != high:     # if low == high, random throws an error
+            guess = random.randint(low,high)  # so the machine goes ahead to offer a number within these ever-narrowing range
+        else:
+            guess = low # but could also be high. This is just a place to park the guess.
+                        # what we're trying to do is get the user to say "c."
+        feedback = input(f'Is {guess} too high (H), too low (L), or correct (C)?').lower()
+        if feedback == 'h':
+            high = guess - 1 # this resets the upper bound of the randint range
+        elif feedback == 'l':
+            low = guess + 1 # this resets the lower bound of the randint range
+    print(f'Excellent! The computer guessed your number, {guess}, correctly!')
+
+computer_guess(1000)
