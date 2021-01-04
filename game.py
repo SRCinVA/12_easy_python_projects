@@ -26,4 +26,15 @@ class TicTacToe:
             print('| ' + ' | '.join(row) + ' |')
 
     def available_moves(self):
-        moves = []  # initialize moves to an empty list.
+        # the long way to do it:
+        # moves = []  # initialize moves to an empty list.
+        # for (i,spot) in enumerate(self.board): # basically, it attaches an object to its index place.
+        #     # ['x','x','o'] --> [(0,'x'),(1,'x'),(2,'o')]
+        #     if spot == ' ':  # meaning that it's empty and available for use.
+        #         moves.append(i)  # we append that index to know that it's been taken. 
+        #         return moves
+    
+        # using list comprehension:
+        return [i for i, spot in emumerate(self.board) if spot == ' ']
+        # basically, this says: "when enumerating through (i, spot),
+        # if the spot is empty, put it into this list." (where is 'moves' here?)
