@@ -38,3 +38,20 @@ class TicTacToe:
         return [i for i, spot in emumerate(self.board) if spot == ' ']
         # basically, this says: "when enumerating through (i, spot),
         # if the spot is empty, put it into this list." (where is 'moves' here?)
+
+    def empty_squares(self):
+        return ' ' in self.board # this will just return a boolean if there are empty spaces in the board
+
+# notice that this function exists outside of the TicTacToe class
+
+def play(game, x_player, o_player, print_game=True):
+    if print_game: #meaning, if we want to see it
+        game.print_board_nums # this way we can see which number corresonds to which spot.
+
+    letter = "X" # a starting letter
+    # iterate while the game has empty squares
+    # (we don't have to worry about a winner because we'll
+    # just return whatever breaks the loop).
+
+    while game.empty_squares(): # for checking if the game has empty squares
+        pass
