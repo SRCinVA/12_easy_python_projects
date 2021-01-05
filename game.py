@@ -40,7 +40,26 @@ class TicTacToe:
         # if the spot is empty, put it into this list." (where is 'moves' here?)
 
     def empty_squares(self):
-        return ' ' in self.board # this will just return a boolean if there are empty spaces in the board
+        # return ' ' in self.board # this will just return a boolean if the selection is an empty space
+        return self.board.count(' ') # she opted to just count the spaces in the board; seems easier
+
+
+    # we might want to know the number of empty squares
+    def num_empty_squares(self):
+        return len(self.available_moves())
+        # the above will retutn the available_moves list, and we can count the number of empty spots
+
+    # to actually make a move
+    def make_move(self, square, letter):
+        # if we're going to make a move, then we need to be sure it's valid
+        # If valid, it returns True; if not, then False
+        if self.board[square] == ' ': # if that square on the board is empty ...
+            self.board[square] = letter # ... then put the letter in that space.
+            return True
+        else:
+            return False
+
+
 
 # notice that this function exists outside of the TicTacToe class
 
@@ -53,5 +72,16 @@ def play(game, x_player, o_player, print_game=True):
     # (we don't have to worry about a winner because we'll
     # just return whatever breaks the loop).
 
+    # she calls this "the play loop" (which makes sense):
     while game.empty_squares(): # for checking if the game has empty squares
-        pass
+        # while there are emptyspaces, let's get the next move from the appropriate player
+        if letter == "0":
+            square = o_player.get_move(game)
+        else:
+            square = x_player.getmove(game)
+
+    # define a function to actually make a move
+        if game.make_move(square, letter): # meaning, "is valid":
+            if print_game:
+                print(letter + f' makes a move to square {square}')
+
