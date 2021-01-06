@@ -55,11 +55,15 @@ class TicTacToe:
         # If valid, it returns True; if not, then False
         if self.board[square] == ' ': # if that square on the board is empty ...
             self.board[square] = letter # ... then put the letter in that space.
+            # now you need to check if you actually won (we'll do this later):
+            if self.winner(square, letter): # passes in last move, but WTF did 'winner' come from??
+                self.current_winner = letter
             return True
         else:
             return False
 
-
+    def winner(self, square, letter):
+        
 
 # notice that this function exists outside of the TicTacToe class
 
@@ -84,4 +88,22 @@ def play(game, x_player, o_player, print_game=True):
         if game.make_move(square, letter): # meaning, "is valid":
             if print_game:
                 print(letter + f' makes a move to square {square}')
+                game.print_board() # so that we can see what the user just did
+                print('')
 
+            if game.current_winner: # *seems* this serves as a checker to make sure there's no winner
+                if print_game: # not sure why this line is needed
+                    print(letter + ' wins!')
+                return letter
+
+            # after making a single move, we need to alternate letters
+            # here, we assign the letter to 'O' if it's currently 'X',
+            # otherwise, we just assign 'letter' to 'X' (don't even need the rest of the statement)
+            letter = 'O' if letter 'X' == 'X' else 'X'
+            # another way to do this is below (probably what I would have done):
+            # if letter == 'X':
+            #   letter = 'O'
+            # else:
+            #   letter = 'X' 
+        if print_game: # here, if we fall out of the first loop, then there was no winner. 
+            print("It\'s a tie!")
