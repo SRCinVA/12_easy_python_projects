@@ -63,10 +63,33 @@ class TicTacToe:
             return False
 
     def winner(self, square, letter):
+        # we have to check all possibilities of three in a row.
+        # first check the row
+        row_ind = square // 3  # divide by three and then round down. Don't understand what this is achieving.
+        row = self.board[row_ind*3 : (row_ind + 1)] # not at all clear what this is.
+        if all([spot == letter for spot in row]):   # "spot" is just a name; the important thing is the list comprehension syntax.
+                                                    # if all of these items are True ...
+            return True
         
+        # check columns
+        col_ind = square % 3   # same (unclear) reasoning employed as above.
+        column = [self.board[col_ind+1*3] for i in range(3)]  # a mystery ...
+        if all([spot == letter for spot in column]):
+            return True
+
+        # check diagonals
+        if square % 2 == 0:
+            diagonal1 = [self.board[i] for i in [0,4,8]]
+            if all([spot == letter for spot in diagonal1]): # can use a similar checker
+                return True
+            diagonal2 = [self.board[i] for i in [2,4,6]]
+            if all([spot == letter for spot in diagonal2]):
+                return True
+
+        # if all of these checks fail, then there's no winner, so it returns False
+        return False
 
 # notice that this function exists outside of the TicTacToe class
-
 def play(game, x_player, o_player, print_game=True):
     if print_game: #meaning, if we want to see it
         game.print_board_nums # this way we can see which number corresonds to which spot.
