@@ -1,3 +1,6 @@
+import time
+from player import HumanPlayer, RandomComputerPlayer
+
 class TicTacToe:
     def __init__(self):
         self.board = [' ' for _ in range(9)]
@@ -128,5 +131,16 @@ def play(game, x_player, o_player, print_game=True):
             #   letter = 'O'
             # else:
             #   letter = 'X' 
-        if print_game: # here, if we fall out of the first loop, then there was no winner. 
-            print("It\'s a tie!")
+
+        # let's introduce a pause of 0.8 seconds
+        time.sleep(0.8)
+
+
+    if print_game: # here, if we fall out of the first loop, then there was no winner. 
+        print("It\'s a tie!")
+
+if __name__ == '__main__':  # What in the world is going on with this line? Can't you just set up __main__ as a standalone?
+    x_player = HumanPlayer('X')
+    o_player = RandomComputerPlayer('O')
+    t = TicTacToe
+    play(t, x_player, o_player, print_game=True)
