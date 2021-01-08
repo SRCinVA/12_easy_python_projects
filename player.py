@@ -29,7 +29,7 @@ class HumanPlayer(Player):
         valid_square = False # we want the human to be able to give input through the terminal
         val = None
         while not valid_square: # meaning, when the square is in fact valid ...
-            square = input(self.letter + '\'s turn. Input move (0-9)')
+            square = input(self.letter + '\'s turn. Input move (0-8)')
             # now we have to make sure that the input is valid
             try:
                 val = int(square)   # to make sure they actually put in an integer
